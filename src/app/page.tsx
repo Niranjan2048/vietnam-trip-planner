@@ -6,8 +6,9 @@ import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselItem } from "@/components/ui/carousel";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+// import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const UNSPLASH_ACCESS_KEY = "aE5hnRj-T7SWYKtHNM5XK_C5HamJriYrTVVELtSvMMY  ";
 
@@ -406,7 +407,7 @@ export default function VietnamTripWebsite() {
               },
             }
           );
-          newMap[i] = res.data.results.map((img: any) => img.urls.regular);
+          res.data.results.map((img: { urls: { regular: string } }) => img.urls.regular)
         } catch (err) {
           console.error("Image fetch failed for day", i + 1, err);
         }
@@ -484,9 +485,11 @@ export default function VietnamTripWebsite() {
                       : day.images
                     ).map((src, i) => (
                       <CarouselItem key={i}>
-                        <img
+                        <Image
                           src={src}
                           alt={`Day ${index + 1} image ${i + 1}`}
+                          width={800}
+                          height={400}
                           className="rounded-xl w-full h-64 object-cover"
                         />
                       </CarouselItem>
