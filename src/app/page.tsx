@@ -10,7 +10,7 @@ import { Carousel, CarouselItem } from "@/components/ui/carousel";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const UNSPLASH_ACCESS_KEY = "aE5hnRj-T7SWYKtHNM5XK_C5HamJriYrTVVELtSvMMY  ";
+const UNSPLASH_ACCESS_KEY = "aE5hnRj-T7SWYKtHNM5XK_C5HamJriYrTVVELtSvMMY";
 
 const sections = [
   "Itinerary",
