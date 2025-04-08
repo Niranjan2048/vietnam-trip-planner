@@ -417,6 +417,16 @@ export default function VietnamTripWebsite() {
     fetchImages();
   }, []);
 
+  const tabMap: Record<string, keyof typeof data> = {
+  "Accommodations": "Accommodations",
+  "Transport": "Transport",
+  "Activities": "Activities",
+  "Food & Drinks": "Food&Drinks",
+  "Nightlife & Shopping": "Nightlife&Shopping",
+  "Budget": "Budget",
+};
+
+  
   return (
     <motion.div
       className="p-4 sm:p-6 max-w-6xl mx-auto"
@@ -502,27 +512,28 @@ export default function VietnamTripWebsite() {
         )}
 
         {tab !== "Itinerary" && (
-          <div className="space-y-4">
-            {data[tab.replaceAll(" ", "")]?.map((item, idx) =>
-              typeof item === "string" ? (
-                <Card key={idx}>
-                  <CardContent className="p-4">{item}</CardContent>
-                </Card>
-              ) : (
-                <Card key={idx}>
-                  <CardContent className="p-4">
-                    <h2 className="font-semibold text-lg mb-2">{item.city}</h2>
-                    <ul className="list-disc list-inside">
-                      {item.options.map((opt, i) => (
-                        <li key={i}>{opt}</li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              )
-            )}
-          </div>
-        )}
+        <div className="space-y-4">
+          {data[tabMap[tab]]?.map((item, idx) =>
+            typeof item === "string" ? (
+              <Card key={idx}>
+                <CardContent className="p-4">{item}</CardContent>
+              </Card>
+            ) : (
+              <Card key={idx}>
+                <CardContent className="p-4">
+                  <h2 className="font-semibold text-lg mb-2">{item.city}</h2>
+                  <ul className="list-disc list-inside">
+                    {item.options.map((opt, i) => (
+                      <li key={i}>{opt}</li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            )
+          )}
+        </div>
+      )}
+
       </div>
     </motion.div>
   );
